@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<listeners>
+<listener class-name="ai.eezy.generics.ListnerImp"></listener>
+</listeners>
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="ai.eezy.signuptest.WelcomeTest"/>
+      <class name="ai.eezy.signuptest.PhoneNumberSignupTest"/>
+      <class name="ai.eezy.signuptest.DenyLocationPermission"/>
+      <class name="ai.eezy.signuptest.AllowLocationTest"/>
+      <class name="ai.eezy.signuptest.LocationPermissionTest"/>
+      <class name="ai.eezy.signuptest.NavigateloginToSingupTest"/>
+      <class name="ai.eezy.signuptest.LoginUsingMobileNumberTest"/>
+      <class name="ai.eezy.signuptest.NavigateToOtpPageTest"/>
+      <class name="ai.eezy.signuptest.NavigateToTermsAndConditionPage"/>
+      <class name="ai.eezy.signuptest.EmailSignupInvalidNameTest"/>
+      <class name="ai.eezy.signuptest.LoginRedirectingToSignupTest"/>
+      <class name="ai.eezy.signuptest.EmailSignupInvalidEmailTest"/>
+      <class name="ai.eezy.signuptest.EmailSignupInvalidPasswordTest"/>
+      <class name="ai.eezy.signuptest.EmailSignupValidInputTest"/>
+      <class name="ai.eezy.signuptest.EezylogoTest"/>
+      <class name="ai.eezy.signuptest.InvalidPhoneNumberSignup"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

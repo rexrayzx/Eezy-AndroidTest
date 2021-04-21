@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="ai.eezy.generics.ListnerImp"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)">
+    <groups>
+      <run>
+        <include name="Smoke"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="ai.eezy.logintest.LoginUsingMobileNumberTest">
+        <methods>
+          <include name="configAS"/>
+          <include name="loginUsingMobileNumber"/>
+          <include name="afterMethod"/>
+          <include name="configBS"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- ai.eezy.logintest.LoginUsingMobileNumberTest -->
+      <class name="ai.eezy.signuptest.NavigateToOtpPageTest">
+        <methods>
+          <include name="navigateToOtpPage"/>
+          <include name="configAS"/>
+          <include name="afterMethod"/>
+          <include name="configBS"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- ai.eezy.signuptest.NavigateToOtpPageTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
