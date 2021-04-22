@@ -1,4 +1,4 @@
-package ai.eezy.test;
+package ai.eezy.plantest;
 
 import org.testng.annotations.Test;
 

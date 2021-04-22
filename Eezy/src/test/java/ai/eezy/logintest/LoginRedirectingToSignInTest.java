@@ -11,9 +11,9 @@ import ai.eezy.pages.WelcomeToeezyPage;
  * @author Rajiv
  *
  */
-public class LoginRedirectingToSignupTest extends BaseTest{
+public class LoginRedirectingToSignInTest extends BaseTest{
 	@Test(groups = "Smoke")
-	public void loginToSingup() throws Throwable {
+	public void loginToSingIn() throws Throwable {
 		String expectedText=excelLib.getExcelData("WelcomePage", 1, 2);
 		WelcomeToeezyPage welcome=new WelcomeToeezyPage(driver);
 		welcome.getLocationAllowbtn(driver).click();

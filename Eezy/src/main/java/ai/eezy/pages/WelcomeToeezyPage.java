@@ -21,9 +21,6 @@ public class WelcomeToeezyPage extends GenericUtil{
 	@AndroidFindBy(id="com.android.packageinstaller:id/permission_deny_button")
 	private MobileElement locationDenybtn;
 	
-	@AndroidFindBy(id="com.android.permissioncontroller:id/permission_allow_foreground_only_button")
-	private MobileElement locationAllowWhileAppIsOpenbtn;
-	
 	@AndroidFindBy(id="com.eezy.ai.dev:id/wizardPetImageView")
 	private MobileElement petImage;
 	

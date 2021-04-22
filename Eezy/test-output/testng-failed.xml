@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="ai.eezy.test.CountryTest">
+      <class name="ai.eezy.logintest.LoginTest">
         <methods>
-          <include name="country"/>
+          <include name="login"/>
           <include name="configAS"/>
           <include name="afterMethod"/>
           <include name="configBS"/>
           <include name="beforeMethod"/>
         </methods>
-      </class> <!-- ai.eezy.test.CountryTest -->
+      </class> <!-- ai.eezy.logintest.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

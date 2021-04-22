@@ -41,7 +41,7 @@ public class GenericUtil {
 	 */
 	public void tapOnElement(AndroidDriver driver,MobileElement element) {
 		TouchAction toucha=new TouchAction(driver);
-		toucha.tap(TapOptions.tapOptions().withElement(ElementOption.element(element)));
+		toucha.tap(TapOptions.tapOptions().withElement(ElementOption.element(element))).perform();
 	}
 	/**
 	 * to perform long press Action
@@ -68,7 +68,6 @@ public class GenericUtil {
 	/**
 	 * to scroll
 	 * @param driver
-	 * @param waitDuration
 	 * @param StartpointX
 	 * @param EndpointX
 	 * @param StartpointY
@@ -146,5 +145,16 @@ public class GenericUtil {
 	 */
 	public void back(AndroidDriver driver) {
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+	}
+	
+	public void tap(AndroidDriver driver, double xOffSet,double yOffSet) {
+		Dimension d=driver.manage().window().getSize();
+		int hight = d.getHeight();
+		int width = d.getWidth();
+		int x=(int) (width*xOffSet);
+		int y=(int) (hight*yOffSet); 
+		TouchAction toucha=new TouchAction(driver);
+		toucha.tap(TapOptions.tapOptions()
+				.withPosition(PointOption.point(x, y))).perform();
 	}
 }
