@@ -1,48 +1,53 @@
-version: 2.1
-
+# Java Gradle CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
 jobs:
-  build: 
-    docker:       
-      - image: circleci/openjdk:8-jdk-node       
-    steps:       
-      - run: echo "hello world"          
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
+      - image: circleci/node:4.8.2
 
-environment:
-  # Customize the JVM maximum heap limit
-  MAVEN_OPTS: -Xmx3200m
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
 
-steps:
-  - checkout
+    working_directory: ~/ciricleCI_appium_java
 
-  - restore_cache:
-      keys:
-      - v1-dependencies-{{ checksum "pom.xml" }}
-      # fallback to using the latest cache if no exact match is found
-      - v1-dependencies-
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+      
 
-  - run:
-      name: Install appium server
-      command: |
-        sudo npm update -g
-        sudo npm install -g appium
-        sudo npm install -g wd
+    steps:
+      - checkout
 
-  - run:
-      name: Start appium
-      command: appium &
-      background: true
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-  - run: mvn dependency:go-offline
-  - save_cache:
-      paths:
-        - ~/.m2
-      key: v1-dependencies-{{ checksum "pom.xml" }}
+      - run: mvn dependency:go-offline
+      
+      - run:
+          name: Install appium server
+          command: |
+              sudo npm update -g
+              sudo npm install appium
+              sudo npm install wd
 
-  # run tests!
-  - run: mvn test
-
-
-workflow:
-  maven_test:
-    jobs:
-      - build
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - run:
+          name: Start appium
+          command: appium &
+          background: true
+      # run tests!
+      - run: mvn test
