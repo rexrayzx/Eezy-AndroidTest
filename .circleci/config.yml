@@ -1,0 +1,45 @@
+version: 2.1
+
+jobs:
+build:
+docker:
+- image: circleci/openjdk:8-jdk-node
+
+environment:
+  # Customize the JVM maximum heap limit
+  MAVEN_OPTS: -Xmx3200m
+
+steps:
+  - checkout
+
+  - restore_cache:
+      keys:
+      - v1-dependencies-{{ checksum "pom.xml" }}
+      # fallback to using the latest cache if no exact match is found
+      - v1-dependencies-
+
+  - run:
+      name: Install appium server
+      command: |
+        sudo npm update -g
+        sudo npm install -g appium
+        sudo npm install -g wd
+
+  - run:
+      name: Start appium
+      command: appium &
+      background: true
+
+  - run: mvn dependency:go-offline
+  - save_cache:
+      paths:
+        - ~/.m2
+      key: v1-dependencies-{{ checksum "pom.xml" }}
+
+  # run tests!
+  - run: mvn test
+
+workflows:
+  maven_test:
+    jobs:
+      - maven/test
