@@ -35,8 +35,8 @@ public class EmailSignupInvalidNameTest extends BaseTest{
 	}
 	
 	@Test(dataProvider = "getData")
-	public void invalidNameInput(String name,String email,String password) throws Throwable {
-			
+	public void invalidNameInput(String name,String password) throws Throwable {
+			int num = util.randomvalue();
 			String expectedErrorMsg=excelLib.getExcelData("Validation",1, 1);
 			WelcomeToeezyPage setup=new WelcomeToeezyPage(driver);
 			setup.getLocationAllowbtn(driver).click();
@@ -49,7 +49,7 @@ public class EmailSignupInvalidNameTest extends BaseTest{
 			
 			EmailSignupFirstPage emailSignup=new EmailSignupFirstPage(driver);
 			emailSignup.getFirstnametxb(driver).sendKeys(name);
-			emailSignup.getEmailtxb(driver).sendKeys(email);
+			emailSignup.getEmailtxb(driver).sendKeys("email"+num+"@ymail.com");
 			emailSignup.getPasswordtxb(driver).sendKeys(password);
 			emailSignup.getContinuebtn(driver).click();
 			String actualErrormsg = emailSignup.getValidationErrormsg(driver).getText();
@@ -60,11 +60,10 @@ public class EmailSignupInvalidNameTest extends BaseTest{
 		public Object[][] getData() throws Throwable{
 			int rowIndex = excelLib.getRowCount(sheetName);
 			rowIndex++;
-			Object[][]objArr=new Object[rowIndex][3];
+			Object[][]objArr=new Object[rowIndex][2];
 			for(int i=0; i<rowIndex;i++) {
 				objArr[i][0]=excelLib.getExcelData(sheetName,i, 0);
 				objArr[i][1]=excelLib.getExcelData(sheetName,i, 1);
-				objArr[i][2]=excelLib.getExcelData(sheetName,i, 2);
 			}
 			return objArr;
 	}
@@ -74,8 +73,6 @@ public class EmailSignupInvalidNameTest extends BaseTest{
 			int num=util.randomvalue();
 			String expectedErrorMsg=excelLib.getExcelData("Validation",2, 1);
 			WelcomeToeezyPage setup=new WelcomeToeezyPage(driver);
-			setup.getLocationDenybtn(driver).click();
-			//setup.getLocationAllowbtn(driver).click();
 			setup.getGetStartedbtn(driver).click();
 			/*To select email registration*/
 			SignUpForeezyPage signup=new SignUpForeezyPage(driver);

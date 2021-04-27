@@ -2,7 +2,11 @@ package ai.eezy.generics;
 
 import java.io.FileInputStream;
 import java.util.Properties;
-
+/**
+ * 
+ * @author Rajiv
+ *
+ */
 public class FileUtil {
 	/**
 	 * To get the data from property file

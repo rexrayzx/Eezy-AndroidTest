@@ -26,17 +26,7 @@ import io.appium.java_client.functions.ExpectedCondition;
 public class LoginTest extends BaseTest{
 	@Test
 	public void login() throws Throwable {
-		WelcomeToeezyPage setup=new WelcomeToeezyPage(driver);
-		setup.getLocationAllowbtn(driver).click();
-		setup.getLoginBtn(driver).click();
-		SignUpForeezyPage singin=new SignUpForeezyPage(driver);
-		singin.getMoreSignUpoptnLink(driver).click();
-		MoreSignUpoptionPage option=new MoreSignUpoptionPage(driver);
-		option.getEmailSignUpoptnLink(driver).click();
-		LogInToeezyPage login=new LogInToeezyPage(driver);
-		login.getLoginEmailtxb().sendKeys(file.getDataFromPropertFile("email"));
-		login.getLoginPasswordtxb().sendKeys(file.getDataFromPropertFile("password"));
-		login.getContinueBtn().click();
+		loginToApp(file.getDataFromPropertFile("email"), file.getDataFromPropertFile("password"));
 		LoginHomePage loginHome=new LoginHomePage(driver);
 		try{
 			loginHome.getLaterBtn().click();

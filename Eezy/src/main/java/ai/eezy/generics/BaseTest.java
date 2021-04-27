@@ -18,6 +18,10 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import ai.eezy.pages.LogInToeezyPage;
+import ai.eezy.pages.MoreSignUpoptionPage;
+import ai.eezy.pages.SignUpForeezyPage;
+import ai.eezy.pages.WelcomeToeezyPage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.screenrecording.BaseStartScreenRecordingOptions;
@@ -38,6 +42,7 @@ public class BaseTest {
 	public ExcelLibrary excelLib=new ExcelLibrary();
 	public GenericUtil pageutil=new GenericUtil();
 	String date=new JavaUtil().currentdate().replace(" ", "_").replace(":", "_");
+	
 	
 	
 	/*@BeforeSuite
@@ -73,13 +78,12 @@ public class BaseTest {
 		
 		if(file.getDataFromPropertFile("enviroment").equalsIgnoreCase("realDevice")) {
 		DesiredCapabilities cap=new DesiredCapabilities();
-		cap.setCapability("deviceName", file.getDataFromPropertFile("deviceName"));
-		cap.setCapability("platformVersion", file.getDataFromPropertFile("platformVersion"));
+		cap.setCapability("app", "./App//eezy-uat-2.apk");
 		cap.setCapability("appActivity", file.getDataFromPropertFile("appActivity"));
 		cap.setCapability("automationName", file.getDataFromPropertFile("automationName"));
-		cap.setCapability("platformName", file.getDataFromPropertFile("platformName"));
 		cap.setCapability("appPackage", file.getDataFromPropertFile("appPackage"));
-		cap.setCapability("UDID", file.getDataFromPropertFile("UDID"));
+		
+		
 		//cap.setCapability("noReset", true);
 		URL url=new URL(file.getDataFromPropertFile("url"));
 		
@@ -110,5 +114,19 @@ public class BaseTest {
 	@AfterSuite(groups = {"Smoke","Regression"})
 	public void configAS() {
 		service.stop();
+	}
+	
+	public void loginToApp(String email,String password) {
+		WelcomeToeezyPage setup=new WelcomeToeezyPage(driver);
+		setup.getLocationAllowbtn(driver).click();
+		setup.getLoginBtn(driver).click();
+		SignUpForeezyPage singin=new SignUpForeezyPage(driver);
+		singin.getMoreSignUpoptnLink(driver).click();
+		MoreSignUpoptionPage option=new MoreSignUpoptionPage(driver);
+		option.getEmailSignUpoptnLink(driver).click();
+		LogInToeezyPage login=new LogInToeezyPage(driver);
+		login.getLoginEmailtxb().sendKeys(email);
+		login.getLoginPasswordtxb().sendKeys(password);
+		login.getContinueBtn().click();
 	}
 }

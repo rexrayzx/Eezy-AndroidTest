@@ -98,6 +98,15 @@ public class GenericUtil {
 		WebDriverWait wait=new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
+	/**
+	 * To wait till element is visible
+	 * @param driver
+	 * @param element
+	 */
+	public void waitforVisiblility(AndroidDriver driver,WebElement element) {
+		WebDriverWait wait=new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
 	
 	/**
 	 * To take Screenshot

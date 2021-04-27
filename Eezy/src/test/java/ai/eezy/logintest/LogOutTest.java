@@ -19,16 +19,7 @@ public class LogOutTest extends BaseTest{
 	@Test
 	public void logout() throws Throwable {
 		WelcomeToeezyPage setup=new WelcomeToeezyPage(driver);
-		setup.getLocationAllowbtn(driver).click();
-		setup.getLoginBtn(driver).click();
-		SignUpForeezyPage singin=new SignUpForeezyPage(driver);
-		singin.getMoreSignUpoptnLink(driver).click();
-		MoreSignUpoptionPage option=new MoreSignUpoptionPage(driver);
-		option.getEmailSignUpoptnLink(driver).click();
-		LogInToeezyPage login=new LogInToeezyPage(driver);
-		login.getLoginEmailtxb().sendKeys(file.getDataFromPropertFile("email"));
-		login.getLoginPasswordtxb().sendKeys(file.getDataFromPropertFile("password"));
-		login.getContinueBtn().click();
+		loginToApp(file.getDataFromPropertFile("email"), file.getDataFromPropertFile("password"));
 		LoginHomePage loginHome=new LoginHomePage(driver);
 		pageutil.waitToDisplay(driver, loginHome.getSkipbtn());
 		pageutil.tap(driver, .5, .1);
@@ -36,7 +27,6 @@ public class LogOutTest extends BaseTest{
 		menu.getLogoutMenu().click();
 		menu.getYesLogoutBtn().click();
 		Assert.assertTrue(setup.getWizardtitleText(driver).isDisplayed());
-		
 	}
 
 }

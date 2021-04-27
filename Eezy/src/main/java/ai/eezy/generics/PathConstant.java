@@ -12,4 +12,7 @@ public interface PathConstant {
 	String screenshotpath=currentpath+"/Screenshot/";
 	String reportPath=currentpath+"/Reports/";
 	String videopath=currentpath+"/Video/";
+	String mostlyfeel="//androidx.cardview.widget.CardView[@resource-id='com.eezy.ai.dev:id/moodCard1']";
+	String sometimefeels="//androidx.cardview.widget.CardView[@resource-id='com.eezy.ai.dev:id/moodCard2']";
+	String rarelyfeel="//androidx.cardview.widget.CardView[@resource-id='com.eezy.ai.dev:id/moodCard3']";
 }
